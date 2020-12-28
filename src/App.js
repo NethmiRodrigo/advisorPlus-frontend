@@ -1,0 +1,34 @@
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home/Home";
+import Login from "./components/login/Login";
+import RegisterForm from "./components/register/RegisterForm";
+import RegisterUser from "./components/register/RegisterUser";
+import RegisterAdvisor from "./components/register/RegisterAdvisor";
+import Blog from "./components/blog/Blog";
+import CategoryNav from './components/navbar/CategoryNav';
+import Footer from "./components/footer/Footer";
+import Category1 from './components/advisors/Category1';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+function App() {
+	return (
+		<Router>
+			<div>
+				<Navbar />
+				<CategoryNav />
+				<Switch>
+					<Route path="/" exact component={Home} />
+					<Route path="/register" component={RegisterForm} />
+					<Route path="/blog" component={Blog} />
+					<Route path="/login" component={Login} />
+					<Route path="/register-user" exact component={RegisterUser} />
+					<Route path="/register-advisor" exact component={RegisterAdvisor} />
+					<Route path="/advisors-category-1" component={Category1} />
+				</Switch>
+				<Footer />
+			</div>
+		</Router>
+	);
+}
+
+export default App;

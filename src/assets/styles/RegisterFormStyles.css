@@ -1,0 +1,16 @@
+.text {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-weight: bold;
+}
+
+.main {
+	min-height: 49vw;
+	background: url("../images/pic1.jpg");
+	background-size: cover;
+}
+
+/* .main2 {
+    min-height: 49.1vw;
+    background: url(../pic5.jpg);
+    background-size: cover;
+} */

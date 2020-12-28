@@ -1,0 +1,16 @@
+.category {
+    color:rgb(76, 79, 82);
+}
+
+.category-navbar {
+    border: 0px solid rgb(192, 186, 186);
+    height: auto;
+}
+
+.left {
+    margin-left: 5vw;
+}
+
+.right {
+    margin-right: 5vw;
+}
