@@ -1,0 +1,7 @@
+version: "3"
+services:
+  react-app:
+    image: frontend
+    stdin_open: true
+    ports:
+      - "3000:3000"
