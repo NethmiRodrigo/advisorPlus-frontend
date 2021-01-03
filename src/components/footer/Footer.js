@@ -67,11 +67,11 @@ const Footer = () => {
 	                    	© Advisor+ International Limited by <a href="#">Code360</a>
 	                    </div>
 	           			<div className="col-md-6 footer-social">
-	                    	<a href="https://www.facebook.com/code.threesixty.12/"><i className="fab fa-facebook-f"></i></a>
-                            <a href="#"><i className="fab fa-youtube"></i></a>   
-							<a href="#"><i className="fab fa-instagram"></i></a> 
-                            <a href="#"><i className="fab fa-github"></i></a>
-                            <a href="#"><i className="fab fa-dev"></i></a>
+	                    	<a href="https://www.facebook.com/code.threesixty.12/" target="_blank"><i className="fab fa-facebook-f"></i></a>
+                            <a href="https://www.youtube.com/channel/UC706PdhRiodqDnTj2CKqIhA" target="_blank"><i className="fab fa-youtube"></i></a>   
+							<a href="#" target="_blank"><i className="fab fa-instagram"></i></a> 
+                            <a href="#" target="_blank"><i className="fab fa-github"></i></a>
+                            <a href="#" target="_blank"><i className="fab fa-dev"></i></a>
 	                    </div>
 	           		</div>
 	        	</div>

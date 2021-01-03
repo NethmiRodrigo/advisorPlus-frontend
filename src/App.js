@@ -9,6 +9,8 @@ import CategoryNav from './components/navbar/CategoryNav';
 import Footer from "./components/footer/Footer";
 import Category1 from './components/advisors/Category1';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AdvisorProfile from "./components/profile/AdvisorProfile";
+import ViewAdvisorProfile from './components/profile/ViewAdvisorProfile'; 
 
 function App() {
 	return (
@@ -24,6 +26,8 @@ function App() {
 					<Route path="/register-user" exact component={RegisterUser} />
 					<Route path="/register-advisor" exact component={RegisterAdvisor} />
 					<Route path="/advisors-category-1" component={Category1} />
+					<Route path="/advisor-profile" component={AdvisorProfile} />
+					<Route path="/advisor-view" component={ViewAdvisorProfile} />
 				</Switch>
 				<Footer />
 			</div>
