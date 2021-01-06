@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AdvisorProfileStyles from '../../assets/styles/AdvisorProfileStyles.css';
 import Modal from 'react-modal';
-import Skill from './Skill';
+import SkillSet from '../../components/profile/skillset/SkillSet';
 
 class AdvisorProfile extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class AdvisorProfile extends Component {
             whoami: 'About me...',
             deatilsModal: false,
             linksModal: false,
-            whoamiModal: false,
+            whoamiModal: false
         }
     }
 
@@ -69,6 +69,26 @@ class AdvisorProfile extends Component {
         });
     }
 
+    setLinksModal = () => {
+        this.backupWeb = this.state.web;
+        this.backupGithub = this.state.github;
+        this.backupTwitter = this.state.twitter;
+        this.backupInsta = this.state.insta;
+        this.backupFb = this.state.fb;
+
+        this.setState({
+            linksModal: true
+        });
+    }
+
+    setWhoamiModal = () => {
+        this.backupWhoami = this.state.whoami;
+
+        this.setState({
+            whoamiModal: true
+        });
+    }
+
     // Reset states with backup state values
     unsetDetailsModal = () => {
         this.setState({
@@ -82,6 +102,25 @@ class AdvisorProfile extends Component {
         });
     }
 
+    unsetLinksModal = () => {
+        this.setState({
+            web: this.backupWeb,
+            github: this.backupGithub,
+            twitter: this.backupTwitter,
+            insta: this.backupInsta,
+            fb: this.backupFb,
+            linksModal: false
+        });
+    }
+
+    unsetWhoamiModal = () => {
+        this.setState({
+            whoami: this.backupWhoami,
+            whoamiModal: false
+        });
+    }
+
+    // Submit
     submitDetails = () => {
         this.setState({
             name: this.newName,
@@ -91,31 +130,6 @@ class AdvisorProfile extends Component {
             phone: this.newPhone,
             experience: this.newExperience,
             deatilsModal: false
-        });
-    }
-
-    // Setting backup
-    setLinksModal = () => {
-        this.backupWeb = this.state.web;
-        this.backupGithub = this.state.github;
-        this.backupTwitter = this.state.twitter;
-        this.backupInsta = this.state.insta;
-        this.backupFb = this.state.fb;
-
-        this.setState({
-            linksModal: true
-        });
-    }
-
-    // Reset states with backup state values
-    unsetLinksModal = () => {
-        this.setState({
-            web: this.backupWeb,
-            github: this.backupGithub,
-            twitter: this.backupTwitter,
-            insta: this.backupInsta,
-            fb: this.backupFb,
-            linksModal: false
         });
     }
 
@@ -130,29 +144,14 @@ class AdvisorProfile extends Component {
         });
     }
 
-    // Setting backup
-    setWhoamiModal = () => {
-        this.backupWhoami = this.state.whoami;
-
-        this.setState({
-            whoamiModal: true
-        });
-    }
-
-    // Reset states with backup state values
-    unsetWhoamiModal = () => {
-        this.setState({
-            whoami: this.backupWhoami,
-            whoamiModal: false
-        });
-    }
-
     submitWhoami = () => {
         this.setState({
             whoami: this.newWhoami,
             whoamiModal: false
         });
     }
+
+    //  Editing event handlers
 
     nameChangeHandler = (event) => {
         this.newName = event.target.value;
@@ -203,9 +202,6 @@ class AdvisorProfile extends Component {
     }
 
     render() {
-        const skills = ['C', 'Java', 'Python'];
-        const skillSet = skills.map(skill => <Skill mySkill={skill} />);
-
         return (
             <div className="container prof" style={{marginTop: '10px'}}>
                 <div className="main-body">
@@ -407,30 +403,8 @@ class AdvisorProfile extends Component {
                                 <div className="col-sm-6 mb-3">
                                     <div className="card bg-light h-100">
                                         <div className="card-body">
-                                            <div className="d-flex align-items-center mb-3">
-                                                <button className="rounded px-2 py-1" style={{marginBottom: '5px', border: '1px blue solid', color: 'blue'}}>
-                                                    <i className="fas fa-edit"></i>
-                                                    <span style={{marginLeft: '5px'}}>Edit</span>
-                                                </button>
-
-                                                {/* Edit modals */}
-                                                {/* <Modal isOpen={this.state.skillModal} >
-                                                    <form onSubmit={this.submitSkill}>
-                                                        <div className="form-group">
-                                                            <button for="skill">About me</button>
-                                                            <input type="text" className="form-control" id="skill" placeholder={this.state.skill} onChange={this.skillChangeHandler} />
-                                                        </div>
-                                                        <button style={{marginTop: '50px', marginRight: '10px'}} type="submit" className="btn btn-primary">Save changes</button>
-                                                        <button style={{marginTop: '50px', marginLeft: '10px'}} className="btn btn-danger" onClick={this.unsetSkill}>Cancel</button>
-                                                    </form>
-                                                </Modal> */}
-                                                {/* Edit modals */}
-
-                                            </div>
-                                            <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Skills</i>What I can...</h6>
-                                            
-                                            {skillSet}
-                                            
+                                            <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Skills</i>I am good in...</h6>
+                                            <SkillSet />
                                         </div>
                                     </div>
                                 </div>
@@ -448,7 +422,7 @@ class AdvisorProfile extends Component {
                                                 <form onSubmit={this.submitWhoami}>
                                                     <div className="form-group">
                                                         <label for="whoami">About me</label>
-                                                        <textarea type="text" className="form-control" id="whoami" placeholder={this.state.whoami} onChange={this.whoamiChangeHandler} />
+                                                        <textarea type="text" className="form-control" id="whoami" placeholder={this.state.whoami} onChange={this.whoamiChangeHandler} style={{backgroundColor: 'white'}} />
                                                     </div>
                                                     <button style={{marginTop: '50px', marginRight: '10px'}} type="submit" className="btn btn-primary">Save changes</button>
                                                     <button style={{marginTop: '50px', marginLeft: '10px'}} className="btn btn-danger" onClick={this.unsetWhoamiModal}>Cancel</button>

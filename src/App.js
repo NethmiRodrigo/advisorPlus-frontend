@@ -10,7 +10,9 @@ import Footer from "./components/footer/Footer";
 import Category1 from './components/advisors/Category1';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdvisorProfile from "./components/profile/AdvisorProfile";
-import ViewAdvisorProfile from './components/profile/ViewAdvisorProfile'; 
+import ViewAdvisorProfile from './components/profile/ViewAdvisorProfile';
+import UserProfile from "./components/profile/UserProfile";
+import ViewUserProfile from './components/profile/ViewUserProfile'; 
 
 function App() {
 	return (
@@ -28,6 +30,8 @@ function App() {
 					<Route path="/advisors-category-1" component={Category1} />
 					<Route path="/advisor-profile" component={AdvisorProfile} />
 					<Route path="/advisor-view" component={ViewAdvisorProfile} />
+					<Route path="/user-profile" component={UserProfile} />
+					<Route path="/user-view" component={ViewUserProfile} />
 				</Switch>
 				<Footer />
 			</div>
