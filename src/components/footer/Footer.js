@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterStyes from '../../assets/styles/FooterStyles.css';
 import {Link} from 'react-router-dom';
+import advisorplus from '../../assets/images/advisorplus.jpg';
 
 const Footer = () => {
     return (
@@ -8,13 +9,12 @@ const Footer = () => {
         	<div className="footer-top">
 		        <div className="container">
 		        	<div className="row">
-		        		<div className="col-md-3 footer-about wow fadeInUp animated" style={{visibility: 'visible', animationName: 'fadeInUp'}}>
-		        			<p className="display-3 set-color-green" style={{color: 'green'}}>Advisor+</p>
-                            {/* <img className="logo-footer" src="assets/img/logo.png" alt="logo-footer" data-at2x="assets/img/logo.png" width="74" height="85" /> */}
+		        		<div className="col-md-3 footer-about wow fadeInUp animated" style={{visibility: 'visible', animationName: 'fadeInUp', paddingLeft: "3vw"}}>
+		        			<img src={advisorplus} style={{marginBottom: "3vh"}} />
 		        			<p>
-		        				We are a young company always looking for new and creative ideas to help you with our products in your everyday work.
+		        				We are a young company always looking for new and creative ideas to help you with our 
+								products in your everyday work.
 		        			</p>
-		        			{/* <p><a href="#">Our Team</a></p> */}
 	                    </div>
 		        		<div className="col-md-4 offset-md-1 footer-contact wow fadeInDown animated" style={{visibility: 'visible', animationName: 'fadeInDown'}}>
 		        			<h3 style={{color: 'darkgreen', fontWeight: 'bold'}}>Contact</h3>

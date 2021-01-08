@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import BlogPost from "./BlogPost";
 import Modal from 'react-modal';
+import {Link} from 'react-router-dom';
 
 class Blog extends Component {
 	constructor(props) {
@@ -8,6 +9,9 @@ class Blog extends Component {
 
 		this.state = {
 			title: "",
+			author: "",
+			date: "",
+			tags: [],
 			content: "",
 			published: [],
 			postModal: false,
@@ -147,14 +151,16 @@ class Blog extends Component {
 												</div>
 											</div>
 										</form>
-										<BlogPost
-											heading="Heading"
-											content="Content"
-											picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
-											author="Author"
-											date="Date"
-											tags="Tags"
-										/>
+										<Link to="/blogpost-visitorview">
+											<BlogPost
+												heading="Heading"
+												content="Content"
+												picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
+												author="Author"
+												date="Date"
+												tags="Tags"
+											/>
+										</Link>
 										<BlogPost
 											heading="Heading"
 											content="Content"
@@ -181,7 +187,7 @@ class Blog extends Component {
 									<div className="grid grid cols-3 gap-4 mt-5" style={{marginLeft: '3vw', marginRight: '3vw'}}>
 										<p className="display-3" align="center" style={{color: "#008080"}}>My Posts</p>
 										{this.state.published.map(
-											post => <div>{post}</div>
+											post => <Link to="/blogpost-visitorview">{post}</Link>
 										)}
 										{/* <BlogPost
 											heading="Heading"
