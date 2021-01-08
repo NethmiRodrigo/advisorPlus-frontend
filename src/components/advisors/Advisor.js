@@ -9,6 +9,20 @@ const Advisor = () => {
             <div className="flip-card">
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
+                        <div 
+                            style={{
+                                position: "absolute",
+                                bottom: "7vh",
+                                width: "100%",
+                                height: "20%",
+                                backgroundColor: "#28B463",
+                                color: "white",
+                                fontSize: "150%"
+                            }}
+                        >
+                            <p>First Name</p>
+                            <p>RATING</p>
+                        </div>
                         <img src={samplepic} alt="Avatar" style={{width: '350px', height: '450px', borderRadius: '30px'}} />
                     </div>
                     <div className="flip-card-back">
