@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const CategoryNav = () => {
 	return (
 		<div>
-			<nav className="nav nav-pills flex-column flex-sm-row category-navbar mt-4 bg-green-500 text-white font-bold px-10">
+			<nav className="nav nav-pills flex-column flex-sm-row category-navbar mt-0 bg-green-500 text-white font-bold px-10">
 				<Link to="/advisors-category-1">
 					<a
 						className="flex-sm-fill text-sm-center nav-link category left"

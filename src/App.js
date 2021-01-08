@@ -12,6 +12,11 @@ import Blog from "./pages/blog/Blog";
 import CategoryNav from "./components/navbar/CategoryNav";
 import Footer from "./components/footer/Footer";
 import Category1 from "./pages/advisors/Category1";
+import AdvisorProfile from "./pages/profile/AdvisorProfile";
+import ViewAdvisorProfile from "./pages/profile/ViewAdvisorProfile";
+import UserProfile from "./pages/profile/UserProfile";
+import ViewUserProfile from "./pages/profile/ViewUserProfile";
+import ViewBlogPost from "./pages/blog/ViewBlogPost";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -50,6 +55,11 @@ function App() {
 						<Route path="/register-user" exact component={RegisterUser} />
 						<Route path="/register-advisor" exact component={RegisterAdvisor} />
 						<Route path="/advisors-category-1" component={Category1} />
+						<Route path="/advisor-profile" component={AdvisorProfile} />
+						<Route path="/advisor-view" component={ViewAdvisorProfile} />
+						<Route path="/user-profile" component={UserProfile} />
+						<Route path="/user-view" component={ViewUserProfile} />
+						<Route path="/blogpost-visitorview" component={ViewBlogPost} />
 					</Switch>
 					<Footer />
 				</div>

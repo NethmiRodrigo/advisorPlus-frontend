@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterStyes from '../../assets/styles/FooterStyles.css';
 import {Link} from 'react-router-dom';
+import advisorplus from '../../assets/images/advisorplus.jpg';
 
 const Footer = () => {
     return (
@@ -8,13 +9,12 @@ const Footer = () => {
         	<div className="footer-top">
 		        <div className="container">
 		        	<div className="row">
-		        		<div className="col-md-3 footer-about wow fadeInUp animated" style={{visibility: 'visible', animationName: 'fadeInUp'}}>
-		        			<p className="display-3 set-color-green" style={{color: 'green'}}>Advisor+</p>
-                            {/* <img className="logo-footer" src="assets/img/logo.png" alt="logo-footer" data-at2x="assets/img/logo.png" width="74" height="85" /> */}
+		        		<div className="col-md-3 footer-about wow fadeInUp animated" style={{visibility: 'visible', animationName: 'fadeInUp', paddingLeft: "3vw"}}>
+		        			<img src={advisorplus} style={{marginBottom: "3vh"}} />
 		        			<p>
-		        				We are a young company always looking for new and creative ideas to help you with our products in your everyday work.
+		        				We are a young company always looking for new and creative ideas to help you with our 
+								products in your everyday work.
 		        			</p>
-		        			{/* <p><a href="#">Our Team</a></p> */}
 	                    </div>
 		        		<div className="col-md-4 offset-md-1 footer-contact wow fadeInDown animated" style={{visibility: 'visible', animationName: 'fadeInDown'}}>
 		        			<h3 style={{color: 'darkgreen', fontWeight: 'bold'}}>Contact</h3>
@@ -67,11 +67,11 @@ const Footer = () => {
 	                    	© Advisor+ International Limited by <a href="#">Code360</a>
 	                    </div>
 	           			<div className="col-md-6 footer-social">
-	                    	<a href="https://www.facebook.com/code.threesixty.12/"><i className="fab fa-facebook-f"></i></a>
-                            <a href="#"><i className="fab fa-youtube"></i></a>   
-							<a href="#"><i className="fab fa-instagram"></i></a> 
-                            <a href="#"><i className="fab fa-github"></i></a>
-                            <a href="#"><i className="fab fa-dev"></i></a>
+	                    	<a href="https://www.facebook.com/code.threesixty.12/" target="_blank"><i className="fab fa-facebook-f"></i></a>
+                            <a href="https://www.youtube.com/channel/UC706PdhRiodqDnTj2CKqIhA" target="_blank"><i className="fab fa-youtube"></i></a>   
+							<a href="#" target="_blank"><i className="fab fa-instagram"></i></a> 
+                            <a href="#" target="_blank"><i className="fab fa-github"></i></a>
+                            <a href="#" target="_blank"><i className="fab fa-dev"></i></a>
 	                    </div>
 	           		</div>
 	        	</div>
