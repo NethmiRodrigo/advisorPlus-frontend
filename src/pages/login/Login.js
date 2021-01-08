@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import LoginStyles from "../../assets/styles/LoginStyles.css";
 import { Link } from "react-router-dom";
+import "../../assets/styles/LoginStyles.css";
 
 class Login extends Component {
 	render() {
 		return (
 			<div className="body">
-				<div className="wrapperrr shadow-lg">
+				<div className="wrapper shadow-lg">
 					<div className="title">Sign In</div>
 					<form action="#">
 						<div className="field">
-							<input type="text" required />
 							<label>Username</label>
+							<input type="text" required />
 						</div>
 						<div className="field">
-							<input type="password" required />
 							<label>Password</label>
+							<input type="password" required />
 						</div>
 						<div className="content">
 							<div className="checkbox">
@@ -27,7 +27,7 @@ class Login extends Component {
 							</div>
 						</div>
 						<div className="field">
-							<input type="submit" value="Login" />
+							<input type="submit" className="submit-button" value="Login" />
 						</div>
 						<div className="signup-link">
 							Not a member?
