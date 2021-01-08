@@ -21,9 +21,11 @@ class AdvisorProfile extends Component {
             insta: 'Code360',
             fb: 'Code360',
             whoami: 'About me...',
+            profilePic: "https://bootdey.com/img/Content/avatar/avatar7.png",
             deatilsModal: false,
             linksModal: false,
-            whoamiModal: false
+            whoamiModal: false,
+            changePicModal: false
         }
     }
 
@@ -40,6 +42,7 @@ class AdvisorProfile extends Component {
     newInsta = '';
     newFb = '';
     newWhoami = '';
+    newProfilePic = '';
 
     // Backup States
     backupName = '';
@@ -54,6 +57,7 @@ class AdvisorProfile extends Component {
     backupInsta = '';
     backupFb = '';
     backupWhoami = '';
+    backupProfilePic = '';
 
     // Setting backup
     setDetailsModal = () => {
@@ -86,6 +90,12 @@ class AdvisorProfile extends Component {
 
         this.setState({
             whoamiModal: true
+        });
+    }
+
+    picModal = () => {
+        this.setState({
+            changePicModal: true
         });
     }
 
@@ -151,6 +161,12 @@ class AdvisorProfile extends Component {
         });
     }
 
+    submitProfilePic = () => {
+        this.setState({
+            changePicModal: false
+        });
+    }
+
     //  Editing event handlers
 
     nameChangeHandler = (event) => {
@@ -207,10 +223,50 @@ class AdvisorProfile extends Component {
                 <div className="main-body">
                     <div className="row gutters-sm">
                         <div className="col-md-4 mb-3">
-                            <div className="card bg-light">
+                            <div className="card" style={{background: "#F2F3F4"}}>
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            onClick={this.picModal}
+                                            width="50" 
+                                            height="40" 
+                                            fill="currentColor" 
+                                            className="bi bi-camera-fill" 
+                                            viewBox="0 0 15 16" 
+                                            style={{
+                                                position: "absolute", 
+                                                borderRadius: "100%", 
+                                                background: "white", 
+                                                padding: "4px", 
+                                                marginTop: "16vh", 
+                                                marginLeft: "6vw",
+                                                cursor: "pointer",
+                                                border: "1px solid grey"
+                                            }}
+                                        >
+                                            <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                            <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                                        </svg>
+
+                                        {/* Edit modals */}
+                                        <Modal isOpen={this.state.changePicModal} >
+                                            <form onSubmit={this.submitProfilePic}>
+                                                <div className="form-group">
+                                                    <form>
+                                                        <div className="custom-file">
+                                                            <label className="form-label" for="customFile">Set a new profile image...</label>
+                                                            <input type="file" className="form-control" id="customFile" />
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <button style={{marginTop: '50px', marginRight: '10px'}} type="submit" className="btn btn-primary">Save changes</button>
+                                                <button style={{marginTop: '50px', marginLeft: '10px'}} className="btn btn-danger" onClick={this.unsetChangePicModal}>Cancel</button>
+                                            </form>
+                                        </Modal>
+                                        {/* Edit modals */}
+
+                                        <img src={this.state.profilePic} alt="Admin" className="rounded-circle" width="150" style={{background: "white"}} />
                                         <div className="mt-3">
                                             <p style={{fontSize: '2.5em'}}>{this.state.name}</p>
                                             <p className="text-secondary mb-1">{this.state.occupation}</p>

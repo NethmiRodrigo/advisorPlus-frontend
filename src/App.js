@@ -13,6 +13,7 @@ import AdvisorProfile from "./components/profile/AdvisorProfile";
 import ViewAdvisorProfile from './components/profile/ViewAdvisorProfile';
 import UserProfile from "./components/profile/UserProfile";
 import ViewUserProfile from './components/profile/ViewUserProfile'; 
+import ViewBlogPost from "./components/blog/ViewBlogPost";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 					<Route path="/advisor-view" component={ViewAdvisorProfile} />
 					<Route path="/user-profile" component={UserProfile} />
 					<Route path="/user-view" component={ViewUserProfile} />
+					<Route path="/blogpost-visitorview" component={ViewBlogPost} />
 				</Switch>
 				<Footer />
 			</div>
