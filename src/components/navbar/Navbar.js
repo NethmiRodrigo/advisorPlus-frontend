@@ -1,22 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavbarStyles from '../../assets/styles/NavbarStyles.css';
+import advisorplus from '../../assets/images/advisorplus.jpg';
 
 const Navbar = () => {
 	return (
 		<div className="bg-white py-1 border-t-7 border-green-500 shadow-md">
 			<div className="container flex justify-between items-center mx-auto">
 				<Link to="/">
-					<div className="font-bold text-gray-800 text-2xl tracking-widest">
-						ADVISOR+
+					<div className="font-bold text-gray-800 text-2xl tracking-widest" style={{marginLeft: "2vw"}}>
+						<img src={advisorplus} width="25%" />
 					</div>
 				</Link>
 				<div>
 					<ul className="flex items-center">
-						<li className="p-2 mx-4 text-black text-opacity-50">
-							Solutions for everything...
-						</li>
-						<li className="p-2 mx-1">
+						<li className="p-4 mx-1">
 							<Link to="/">
 								<button className="rounded text-black px-1 py-2">
 									<span className="flex items-center">

@@ -42,7 +42,6 @@ class AdvisorProfile extends Component {
     newInsta = '';
     newFb = '';
     newWhoami = '';
-    newProfilePic = '';
 
     // Backup States
     backupName = '';
@@ -57,7 +56,6 @@ class AdvisorProfile extends Component {
     backupInsta = '';
     backupFb = '';
     backupWhoami = '';
-    backupProfilePic = '';
 
     // Setting backup
     setDetailsModal = () => {
