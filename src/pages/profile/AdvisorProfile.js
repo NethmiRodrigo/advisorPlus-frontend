@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import AdvisorProfileStyles from '../../assets/styles/AdvisorProfileStyles.css';
 import Modal from 'react-modal';
 import SkillSet from '../../components/profile/skillset/SkillSet';
+
+import '../../assets/styles/AdvisorProfileStyles.css';
 
 class AdvisorProfile extends Component {
     constructor(props) {

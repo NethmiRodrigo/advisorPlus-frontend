@@ -60,8 +60,24 @@ const create_advsior_profile = (user_data, history) => async (dispatch) => {
 	}
 };
 
+export const login = (user, history) => async (dispatch) => {
+	dispatch({ type: LOADING_UI });
+	try {
+		let results = await axios.post("/login", user);
+		userID = results.data.userID;
+		setAuthorizationHeader(results.data.token);
+		await dispatch(getUserData(results.data.token));
+		history.push("/");
+	} catch (error) {
+		console.log(error.response?.data, error);
+		dispatch({
+			type: SET_ERRORS,
+			payload: error.response?.data,
+		});
+	}
+};
+
 export const getUserData = (token) => async (dispatch) => {
-	dispatch({ type: LOADING_USER });
 	let uid = jwtDecode(token).user_id;
 	try {
 		let result = await axios.get(`/advisor_profile/${uid}`);
@@ -69,8 +85,12 @@ export const getUserData = (token) => async (dispatch) => {
 			type: SET_USER,
 			payload: result,
 		});
-		return result.data;
+		dispatch({ type: CLEAR_ERRORS });
 	} catch (error) {
+		dispatch({
+			type: SET_ERRORS,
+			payload: error.response?.data,
+		});
 		console.log(error);
 	}
 };
