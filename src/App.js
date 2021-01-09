@@ -1,43 +1,69 @@
-import Navbar from "./components/navbar/Navbar";
-import Home from "./components/home/Home";
-import Login from "./components/login/Login";
-import RegisterForm from "./components/register/RegisterForm";
-import RegisterUser from "./components/register/RegisterUser";
-import RegisterAdvisor from "./components/register/RegisterAdvisor";
-import Blog from "./components/blog/Blog";
-import CategoryNav from './components/navbar/CategoryNav';
-import Footer from "./components/footer/Footer";
-import Category1 from './components/advisors/Category1';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AdvisorProfile from "./components/profile/AdvisorProfile";
-import ViewAdvisorProfile from './components/profile/ViewAdvisorProfile';
-import UserProfile from "./components/profile/UserProfile";
-import ViewUserProfile from './components/profile/ViewUserProfile'; 
-import ViewBlogPost from "./components/blog/ViewBlogPost";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
+
+import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import RegisterForm from "./pages/register/RegisterForm";
+import RegisterUser from "./pages/register/RegisterUser";
+import RegisterAdvisor from "./pages/register/RegisterAdvisor";
+import Blog from "./pages/blog/Blog";
+import CategoryNav from "./components/navbar/CategoryNav";
+import Footer from "./components/footer/Footer";
+import Category1 from "./pages/advisors/Category1";
+import AdvisorProfile from "./pages/profile/AdvisorProfile";
+import ViewAdvisorProfile from "./pages/profile/ViewAdvisorProfile";
+import UserProfile from "./pages/profile/UserProfile";
+import ViewUserProfile from "./pages/profile/ViewUserProfile";
+import ViewBlogPost from "./pages/blog/ViewBlogPost";
+
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import { SET_AUTHENTICATED } from "./redux/types";
+import { logoutUser, getUserData } from "./redux/actions/user_actions";
+
+axios.defaults.baseURL = "http://localhost:5000";
+
+const token = localStorage.AdvsiorPlusToken;
+
+if (token) {
+	const decodedToken = jwtDecode(token);
+	//Check if token is expired
+	if (decodedToken.exp * 1000 < Date.now()) {
+		store.dispatch(logoutUser());
+	} else {
+		store.dispatch({ type: SET_AUTHENTICATED });
+		axios.defaults.headers.common["Authorization"] = token;
+		store.dispatch(getUserData(token));
+	}
+}
 
 function App() {
 	return (
-		<Router>
-			<div>
-				<Navbar />
-				<CategoryNav />
-				<Switch>
-					<Route path="/" exact component={Home} />
-					<Route path="/register" component={RegisterForm} />
-					<Route path="/blog" component={Blog} />
-					<Route path="/login" component={Login} />
-					<Route path="/register-user" exact component={RegisterUser} />
-					<Route path="/register-advisor" exact component={RegisterAdvisor} />
-					<Route path="/advisors-category-1" component={Category1} />
-					<Route path="/advisor-profile" component={AdvisorProfile} />
-					<Route path="/advisor-view" component={ViewAdvisorProfile} />
-					<Route path="/user-profile" component={UserProfile} />
-					<Route path="/user-view" component={ViewUserProfile} />
-					<Route path="/blogpost-visitorview" component={ViewBlogPost} />
-				</Switch>
-				<Footer />
-			</div>
-		</Router>
+		<Provider store={store}>
+			<Router>
+				<div>
+					<Navbar />
+					<CategoryNav />
+					<Switch>
+						<Route path="/" exact component={Home} />
+						<Route path="/register" component={RegisterForm} />
+						<Route path="/blog" component={Blog} />
+						<Route path="/login" component={Login} />
+						<Route path="/register-user" exact component={RegisterUser} />
+						<Route path="/register-advisor" exact component={RegisterAdvisor} />
+						<Route path="/advisors-category-1" component={Category1} />
+						<Route path="/advisor-profile" component={AdvisorProfile} />
+						<Route path="/advisor-view" component={ViewAdvisorProfile} />
+						<Route path="/user-profile" component={UserProfile} />
+						<Route path="/user-view" component={ViewUserProfile} />
+						<Route path="/blogpost-visitorview" component={ViewBlogPost} />
+					</Switch>
+					<Footer />
+				</div>
+			</Router>
+		</Provider>
 	);
 }
 

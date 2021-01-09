@@ -1,9 +1,9 @@
 import React from "react";
 // import CategoryNav from './CategoryNav';
-import Slideshow from "../common/slideshow/Slideshow";
+import Slideshow from "../../components/common/slideshow/Slideshow";
 // import RegisterForm from "../register/RegisterForm";
-import IntroSlideShow from "../common/slideshow/IntroSlideShow";
-import BlogAccess from '../blog/BlogAccess';
+import IntroSlideShow from "../../components/common/slideshow/IntroSlideShow";
+import BlogAccess from "../blog/BlogAccess";
 
 function Home() {
 	return (

@@ -49,49 +49,49 @@
 }
 
 .wrapper form .field {
-	height: 50px;
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 1rem;
 	position: relative;
 }
 
-.wrapper form .field input {
+.wrapper form .field input,
+form .field select,
+form .field option {
 	height: 70%;
 	width: 100%;
 	outline: none;
 	font-size: 15px;
 	padding-left: 20px;
-	border: 0px solid lightgrey;
 	border-radius: 25px;
 	transition: all 0.3s ease;
 }
 
-.wrapper form .field input:focus,
+/* .wrapper form .field input:focus,
 form .field input:valid {
-	border-color: transparent;
-}
+	border-color: transparent !important;
+} */
 
-.wrapper form .field label {
-	position: absolute;
-	top: 35%;
-	left: 20px;
-	color: #999999;
-	font-weight: 400;
-	font-size: 15px;
-	pointer-events: none;
-	transform: translateY(-50%);
-	transition: all 0.3s ease;
-}
+/* .wrapper form .field label {
+	position: absolute !important;
+	top: 35% !important;
+	left: 20px !important;
+	color: #999999 !important;
+	font-weight: 400 !important;
+	font-size: 15px !important;
+	pointer-events: none !important;
+	transform: translateY(-50%) !important;
+	transition: all 0.3s ease !important;
+} */
 
-form .field input:focus ~ label,
+/* form .field input:focus ~ label,
 form .field input:valid ~ label {
-	top: 0%;
-	font-weight: bold;
-	font-size: 16px;
-	color: #4158d0;
-	background: transparent;
-	transform: translateY(-50%);
-}
+	top: 0% !important;
+	font-weight: bold !important;
+	font-size: 16px !important;
+	color: #4158d0 !important;
+	background: transparent !important;
+	transform: translateY(-50%) !important;
+} */
 
 form .content {
 	display: flex;
@@ -124,22 +124,6 @@ form .content .pass-link {
 	color: "";
 }
 
-form .field input[type="submit"] {
-	color: #fff;
-	border: none;
-	padding-left: 0;
-	margin-top: -10px;
-	font-size: 20px;
-	font-weight: 500;
-	cursor: pointer;
-	background: #298a4e;
-	transition: all 0.3s ease;
-}
-
-form .field input[type="submit"]:active {
-	transform: scale(0.95);
-}
-
 form .signup-link {
 	color: #262626;
 	margin-top: 20px;
@@ -155,4 +139,34 @@ form .signup-link a {
 form .pass-link a:hover,
 form .signup-link a:hover {
 	text-decoration: underline;
+}
+
+.error-message {
+	font-weight: bold;
+}
+
+.submit-button {
+	color: #fff;
+	border: none;
+	padding: 5px;
+	margin-top: -10px;
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+	background: #298a4e;
+	transition: all 0.3s ease;
+	height: 70%;
+	width: 100%;
+	outline: none;
+	border-radius: 25px;
+}
+
+.submit-button:hover {
+	transform: scale(1.05);
+}
+
+.submit-button:disabled {
+	transform: none;
+	cursor: not-allowed !important;
+	background-color: #67c18a;
 }
