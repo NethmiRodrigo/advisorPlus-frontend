@@ -55,13 +55,13 @@
 }
 
 .wrapperrr form .field input {
-	height: 80%;
+	height: 70%;
 	width: 100%;
 	outline: none;
 	font-size: 15px;
 	padding-left: 20px;
-	border: 0px solid lightgrey;
 	border-radius: 25px;
+	padding: 5px;
 	transition: all 0.3s ease;
 }
 
@@ -94,7 +94,7 @@ form .field input:valid ~ label {
 form .content {
 	display: flex;
 	width: 100%;
-	height: 50px;
+	/* height: 50px; */
 	font-size: 16px;
 	align-items: center;
 	justify-content: space-around;
@@ -153,4 +153,14 @@ form .signup-link a {
 form .pass-link a:hover,
 form .signup-link a:hover {
 	text-decoration: underline;
+}
+
+.submit-button {
+	padding: 2px;
+}
+
+.submit-button:disabled {
+	transform: none !important;
+	cursor: not-allowed !important;
+	background-color: #67c18a !important;
 }

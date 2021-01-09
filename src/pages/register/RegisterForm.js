@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RegisterFormStyles from "../../assets/styles/RegisterFormStyles.css";
+import "../../assets/styles/RegisterFormStyles.css";
 
 const RegisterForm = () => {
 	return (
@@ -29,9 +29,11 @@ const RegisterForm = () => {
 						marginRight: "7vw",
 					}}
 				>
-					<p className="text" style={{fontSize: '2vw'}}>For Advisors</p>
+					<p className="text" style={{ fontSize: "2vw" }}>
+						For Advisors
+					</p>
 					<br />
-					<p className="text" style={{marginBottom: '3vh'}}>
+					<p className="text" style={{ marginBottom: "3vh" }}>
 						If you are professional on any field, be it arts, science, sports,
 						health anything, this is the space for you to share your knowledge
 						with our community.
@@ -43,9 +45,11 @@ const RegisterForm = () => {
 					</Link>
 				</div>
 				<div style={{ maxWidth: "50vw" }}>
-					<h3 className="text" style={{fontSize: '2vw'}}>For Users</h3>
+					<h3 className="text" style={{ fontSize: "2vw" }}>
+						For Users
+					</h3>
 					<br />
-					<p className="text" style={{marginBottom: '4.2vh'}}>
+					<p className="text" style={{ marginBottom: "4.2vh" }}>
 						Stuck on a project? Can't find get something out of your mind?
 						Always curious to know more? This is your free space to ask
 						questions, get advice and share your enthusiasm.
