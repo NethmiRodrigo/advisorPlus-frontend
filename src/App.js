@@ -12,6 +12,11 @@ import Blog from "./pages/blog/Blog";
 import CategoryNav from "./components/navbar/CategoryNav";
 import Footer from "./components/footer/Footer";
 import Category1 from "./pages/advisors/Category1";
+import Category2 from "./pages/advisors/Category2";
+import Category3 from "./pages/advisors/Category3";
+import Category4 from "./pages/advisors/Category4";
+import Category5 from "./pages/advisors/Category5";
+import Category6 from "./pages/advisors/Category6";
 import AdvisorProfile from "./pages/profile/AdvisorProfile";
 import ViewAdvisorProfile from "./pages/profile/ViewAdvisorProfile";
 import UserProfile from "./pages/profile/UserProfile";
@@ -54,6 +59,11 @@ function App() {
 						<Route path="/register-user" exact component={RegisterUser} />
 						<Route path="/register-advisor" exact component={RegisterAdvisor} />
 						<Route path="/advisors-category-1" component={Category1} />
+						<Route path="/advisors-category-2" component={Category2} />
+						<Route path="/advisors-category-3" component={Category3} />
+						<Route path="/advisors-category-4" component={Category4} />
+						<Route path="/advisors-category-5" component={Category5} />
+						<Route path="/advisors-category-6" component={Category6} />
 						<Route path="/advisor-profile" component={AdvisorProfile} />
 						<Route path="/advisor-view" component={ViewAdvisorProfile} />
 						<Route path="/user-profile" component={UserProfile} />
