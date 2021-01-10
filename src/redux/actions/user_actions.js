@@ -24,7 +24,7 @@ export const register_user = (user_data, history) => async (dispatch) => {
 		setAuthorizationHeader(results.data.token);
 		user_data.uid = results.data?.userID;
 		if (user_data.type === "advisor") {
-			setUserType("advsior");
+			setUserType("advisor");
 			await dispatch(create_advsior_profile(user_data, history));
 		} else if (user_data.type === "user") {
 			setUserType("user");
@@ -104,7 +104,7 @@ export const login = (user, history) => async (dispatch) => {
 			setUserType("user");
 		} else {
 			await dispatch(getUserDetails(results.data.token));
-			setUserType("advsior");
+			setUserType("advisor");
 		}
 		dispatch({
 			type: STOP_LOADING_UI,
@@ -126,7 +126,7 @@ export const getUserDetails = (token) => async (dispatch) => {
 		let result = await axios.get(`/user_sql/${uid}`);
 		dispatch({
 			type: SET_USER,
-			payload: result,
+			payload: result.data,
 		});
 		dispatch({ type: CLEAR_ERRORS });
 	} catch (error) {
@@ -145,7 +145,7 @@ export const getAdvsiorDetails = (token) => async (dispatch) => {
 		let result = await axios.get(`/advisor_profile/${uid}`);
 		dispatch({
 			type: SET_USER,
-			payload: result,
+			payload: result.data,
 		});
 		dispatch({ type: CLEAR_ERRORS });
 	} catch (error) {
