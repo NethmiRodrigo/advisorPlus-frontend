@@ -23,12 +23,14 @@ export const register_user = (user_data, history) => async (dispatch) => {
 		let results = await axios.post("/signup", firebase_data);
 		setAuthorizationHeader(results.data.token);
 		user_data.uid = results.data?.userID;
-		if (user_data.type === "advisor")
+		if (user_data.type === "advisor") {
+			setUserType("advsior");
 			await dispatch(create_advsior_profile(user_data, history));
-		else if (user_data.type === "user")
+		} else if (user_data.type === "user") {
+			setUserType("user");
 			await dispatch(create_user_profile(user_data, history));
+		}
 	} catch (error) {
-		console.log(error.response.data);
 		dispatch({
 			type: SET_ERRORS,
 			payload: error.response?.data?.error,
@@ -75,7 +77,6 @@ export const create_user_profile = (user, history) => async (dispatch) => {
 			gender: user.gender,
 			status: "active",
 		};
-		console.log(user_profile);
 		let results = await axios.post("/user_sql", user_profile);
 		dispatch({
 			type: SET_USER,
@@ -97,9 +98,17 @@ export const login = (user, history) => async (dispatch) => {
 	dispatch({ type: LOADING_UI });
 	try {
 		let results = await axios.post("/login", user);
-		userID = results.data.userID;
 		setAuthorizationHeader(results.data.token);
-		await dispatch(getUserData(results.data.token));
+		if (results.data?.roles?.includes("user")) {
+			await dispatch(getUserDetails(results.data.token));
+			setUserType("user");
+		} else {
+			await dispatch(getUserDetails(results.data.token));
+			setUserType("advsior");
+		}
+		dispatch({
+			type: STOP_LOADING_UI,
+		});
 		history.push("/");
 	} catch (error) {
 		console.log(error.response?.data, error);
@@ -129,7 +138,7 @@ export const getUserDetails = (token) => async (dispatch) => {
 	}
 };
 
-export const getUserData = (token) => async (dispatch) => {
+export const getAdvsiorDetails = (token) => async (dispatch) => {
 	dispatch({ type: LOADING_UI });
 	let uid = jwtDecode(token).user_id;
 	try {
@@ -150,7 +159,7 @@ export const getUserData = (token) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
 	localStorage.removeItem("AdvsiorPlusToken");
-	localStorage.removeItem("AdvisorUser");
+	localStorage.removeItem("AdvisorPlusUser");
 	delete axios.defaults.headers.common["Authorization"];
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
@@ -159,4 +168,9 @@ const setAuthorizationHeader = (token) => {
 	const advsiorToken = `Bearer ${token}`;
 	localStorage.setItem("AdvsiorPlusToken", advsiorToken);
 	axios.defaults.headers.common["Authorization"] = advsiorToken;
+};
+
+const setUserType = (type) => {
+	let encodedType = btoa(type);
+	localStorage.setItem("AdvsiorPlusUser", encodedType);
 };

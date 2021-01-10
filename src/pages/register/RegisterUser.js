@@ -9,6 +9,7 @@ import { register_user } from "../../redux/actions/user_actions";
 import "../../assets/styles/RegisterStyles.css";
 
 const RegisterUser = (props) => {
+	const [errors, setErrors] = useState({});
 	const useInput = (type, value, name, label, handleChange) => {
 		const input = (
 			<Form.Group className="field">
@@ -23,9 +24,9 @@ const RegisterUser = (props) => {
 						handleChange(e.target.value);
 					}}
 				/>
-				{errors[name] && (
+				{errors?.[name] && (
 					<Form.Control.Feedback type="invalid">
-						{errors[name]}
+						{errors?.[name]}
 					</Form.Control.Feedback>
 				)}
 			</Form.Group>
@@ -38,7 +39,6 @@ const RegisterUser = (props) => {
 	const [password, setpassword] = useState("");
 	const [username, setusername] = useState("");
 	const [confirmPassword, setconfirmPassword] = useState("");
-	const [errors, setErrors] = useState({});
 	const [validated, setValidated] = useState(false);
 	const [date, setDate] = useState("");
 	const [gender, setGender] = useState("");
@@ -46,7 +46,7 @@ const RegisterUser = (props) => {
 	const fullNameInput = useInput(
 		"text",
 		fullname,
-		"fullName",
+		"fullname",
 		"Full Name",
 		setfullname
 	);
@@ -85,7 +85,6 @@ const RegisterUser = (props) => {
 		if (JSON.stringify(props.ui.errors) !== JSON.stringify(errors)) {
 			setErrors(props.ui.errors);
 		}
-		console.log(errors, props.ui.errors);
 	}, [errors]);
 
 	const handleSubmit = (event) => {

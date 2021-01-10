@@ -11,12 +11,6 @@ import RegisterAdvisor from "./pages/register/RegisterAdvisor";
 import Blog from "./pages/blog/Blog";
 import CategoryNav from "./components/navbar/CategoryNav";
 import Footer from "./components/footer/Footer";
-import Category1 from "./pages/advisors/Category1";
-import Category2 from "./pages/advisors/Category2";
-import Category3 from "./pages/advisors/Category3";
-import Category4 from "./pages/advisors/Category4";
-import Category5 from "./pages/advisors/Category5";
-import Category6 from "./pages/advisors/Category6";
 import AdvisorProfile from "./pages/profile/AdvisorProfile";
 import ViewAdvisorProfile from "./pages/profile/ViewAdvisorProfile";
 import UserProfile from "./pages/profile/UserProfile";
@@ -28,9 +22,16 @@ import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";
 import {
 	logoutUser,
-	getUserData,
 	getUserDetails,
+	getAdvsiorDetails,
 } from "./redux/actions/user_actions";
+
+import Category1 from "./pages/advisors/Category1";
+import Category2 from "./pages/advisors/Category2";
+import Category3 from "./pages/advisors/Category3";
+import Category4 from "./pages/advisors/Category4";
+import Category5 from "./pages/advisors/Category5";
+import Category6 from "./pages/advisors/Category6";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
@@ -38,13 +39,15 @@ const token = localStorage.AdvsiorPlusToken;
 
 if (token) {
 	const decodedToken = jwtDecode(token);
+	const type = atob(localStorage.AdvsiorPlusUser);
 	//Check if token is expired
 	if (decodedToken.exp * 1000 < Date.now()) {
 		store.dispatch(logoutUser());
 	} else {
 		store.dispatch({ type: SET_AUTHENTICATED });
 		axios.defaults.headers.common["Authorization"] = token;
-		store.dispatch(getUserData(token));
+		if (type === "user") getUserDetails(token);
+		else if (type === "advisor") getAdvsiorDetails(token);
 	}
 }
 

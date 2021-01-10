@@ -15,7 +15,7 @@ const IntroSlideShow = () => {
 		</p>
 	);
 	const text2 = (
-		<p className="display-1">
+		<p className="display-1 antialiased text-7xl tracking-tight">
 			<span style={{ color: "green", fontWeight: "bold" }}>Advisor+</span> is a
 			constantly growing user generated collection of questions and answers.
 		</p>
@@ -47,10 +47,10 @@ const IntroSlideShow = () => {
 		<p className="display-1">
 			Join today to be a part of the community. <br />
 			&emsp;
-			<span style={{ color: "green", fontWeight: "bold" }}>Get advise, </span>
+			<span style={{ color: "green", fontWeight: "bold" }}>Get advice, </span>
 			<br />
 			&emsp;&emsp;
-			<span style={{ color: "green", fontWeight: "bold" }}>Give advise!</span>
+			<span style={{ color: "green", fontWeight: "bold" }}>Give advice!</span>
 		</p>
 	);
 
