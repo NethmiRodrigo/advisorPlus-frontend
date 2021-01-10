@@ -55,8 +55,8 @@
 }
 
 .wrapper form .field input,
-form .field select,
-form .field option {
+.wrapper form .field select,
+.wrapper form .field option {
 	height: 70%;
 	width: 100%;
 	outline: none;

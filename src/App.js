@@ -21,7 +21,11 @@ import ViewBlogPost from "./pages/blog/ViewBlogPost";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";
-import { logoutUser, getUserData } from "./redux/actions/user_actions";
+import {
+	logoutUser,
+	getUserData,
+	getUserDetails,
+} from "./redux/actions/user_actions";
 
 axios.defaults.baseURL = "http://localhost:5000";
 

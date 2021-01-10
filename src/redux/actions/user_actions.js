@@ -21,10 +21,14 @@ export const register_user = (user_data, history) => async (dispatch) => {
 			password: user_data.password,
 		};
 		let results = await axios.post("/signup", firebase_data);
-		userID = results.data?.userID;
 		setAuthorizationHeader(results.data.token);
-		await dispatch(create_advsior_profile(user_data, history));
+		user_data.uid = results.data?.userID;
+		if (user_data.type === "advisor")
+			await dispatch(create_advsior_profile(user_data, history));
+		else if (user_data.type === "user")
+			await dispatch(create_user_profile(user_data, history));
 	} catch (error) {
+		console.log(error.response.data);
 		dispatch({
 			type: SET_ERRORS,
 			payload: error.response?.data?.error,
@@ -40,7 +44,7 @@ const create_advsior_profile = (user_data, history) => async (dispatch) => {
 			name: user_data.name,
 			status: user_data.status,
 			rating: user_data.rating,
-			uid: userID,
+			uid: user_data.uid,
 		};
 		let results = await axios.post("/advisor_profile", user);
 		dispatch({
@@ -57,6 +61,35 @@ const create_advsior_profile = (user_data, history) => async (dispatch) => {
 			payload: error.response?.data,
 		});
 		console.log(error);
+	}
+};
+
+export const create_user_profile = (user, history) => async (dispatch) => {
+	dispatch({ type: LOADING_UI });
+	try {
+		const user_profile = {
+			user_id: user.uid,
+			name: user.fullname,
+			content: "",
+			dateOfBirth: user.dob,
+			gender: user.gender,
+			status: "active",
+		};
+		console.log(user_profile);
+		let results = await axios.post("/user_sql", user_profile);
+		dispatch({
+			type: SET_USER,
+			payload: results.data,
+		});
+		dispatch({
+			type: CLEAR_ERRORS,
+		});
+		history.push("/");
+	} catch (error) {
+		dispatch({
+			type: SET_ERRORS,
+			payload: error?.response?.data,
+		});
 	}
 };
 
@@ -77,7 +110,27 @@ export const login = (user, history) => async (dispatch) => {
 	}
 };
 
+export const getUserDetails = (token) => async (dispatch) => {
+	dispatch({ type: LOADING_UI });
+	let uid = jwtDecode(token).user_id;
+	try {
+		let result = await axios.get(`/user_sql/${uid}`);
+		dispatch({
+			type: SET_USER,
+			payload: result,
+		});
+		dispatch({ type: CLEAR_ERRORS });
+	} catch (error) {
+		dispatch({
+			type: SET_ERRORS,
+			payload: error.response?.data,
+		});
+		console.log(error);
+	}
+};
+
 export const getUserData = (token) => async (dispatch) => {
+	dispatch({ type: LOADING_UI });
 	let uid = jwtDecode(token).user_id;
 	try {
 		let result = await axios.get(`/advisor_profile/${uid}`);
@@ -97,6 +150,7 @@ export const getUserData = (token) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
 	localStorage.removeItem("AdvsiorPlusToken");
+	localStorage.removeItem("AdvisorUser");
 	delete axios.defaults.headers.common["Authorization"];
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
