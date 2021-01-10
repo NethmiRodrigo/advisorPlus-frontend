@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
@@ -17,7 +16,6 @@ import ViewAdvisorProfile from "./pages/profile/ViewAdvisorProfile";
 import UserProfile from "./pages/profile/UserProfile";
 import ViewUserProfile from "./pages/profile/ViewUserProfile";
 import ViewBlogPost from "./pages/blog/ViewBlogPost";
-
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";

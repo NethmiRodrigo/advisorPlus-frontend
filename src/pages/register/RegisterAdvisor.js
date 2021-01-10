@@ -12,8 +12,18 @@ class RegisterAdvisor extends Component {
 	constructor(props) {
 		super(props);
 		this.fields = [
-			{ label: "Full Name", name: "fullName", type: "text", required: true },
-			{ label: "Email", name: "email", type: "email", required: true },
+			{ 
+				label: "Full Name", 
+				name: "fullName", 
+				type: "text", 
+				required: true 
+			},
+			{ 
+				label: "Email", 
+				name: "email", 
+				type: "email", 
+				required: true 
+			},
 			{
 				name: "qualifications",
 				label: "Qualifications",
@@ -26,7 +36,11 @@ class RegisterAdvisor extends Component {
 				type: "text",
 				required: true,
 			},
-			{ label: "Password", name: "password", type: "password", required: true },
+			{ 
+				label: "Password", 
+				name: "password", 
+				type: "password", 
+				required: true },
 			{
 				label: "Confirm Password",
 				name: "confirmPassword",
