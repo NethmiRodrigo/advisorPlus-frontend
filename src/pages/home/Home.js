@@ -14,15 +14,15 @@ function Home() {
 			<IntroSlideShow />
 			<div
 				style={{
-					marginTop: "70px",
-					marginLeft: "100px",
-					marginBottom: "30px",
-					marginRight: "100px",
+					marginTop: "25vh",
+					marginLeft: "10vw",
+					marginBottom: "10vh",
+					marginRight: "10vw",
 				}}
 			>
 				<p
 					style={{ fontFamily: "Trebuchet MS" }}
-					className="text-center fs-1 fw-bold"
+					className="text-center fw-bold display-1"
 				>
 					Our popular advisory fields
 				</p>
