@@ -30,12 +30,6 @@ class RegisterAdvisor extends Component {
 				type: "text",
 				required: false,
 			},
-			{
-				label: "Field of Interest",
-				name: "fieldOfInterest",
-				type: "text",
-				required: true,
-			},
 			{ 
 				label: "Password", 
 				name: "password", 
