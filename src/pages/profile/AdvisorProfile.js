@@ -18,8 +18,8 @@ class AdvisorProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: props.user.full_name,
-			ratings: props.user.rating,
+			name: props.user.data.full_name,
+			ratings: props.user.data.rating,
 			// occupation: 'Full Stack Developer',
 			// address: 'Bay Area, San Francisco, CA',
 			// phone: '123456789',
