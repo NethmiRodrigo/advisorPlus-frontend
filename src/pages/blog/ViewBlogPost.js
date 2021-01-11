@@ -8,9 +8,9 @@ class ViewBlogPost extends Component {
 
 		this.state = {
 			postCommentModal: false,
-			username: "user",
+			username: "Leonard Vicy",
 			content: "",
-			date: "date",
+			date: "2021/1/11",
 			published: [],
 		};
 	}
@@ -48,23 +48,23 @@ class ViewBlogPost extends Component {
 			<div style={{ marginLeft: "3vw", marginRight: "3vw" }}>
 				<div className="card" style={{ marginTop: "2vh" }}>
 					<div className="card-body">
-						<p className="display-6">Post title</p>
+						<p className="display-6">What cause depression?</p>
 						<br />
 						<div className="row">
 							<div className="col-3">
 								<p>
 									by{" "}
 									<span style={{ color: "grey" }}>
-										<i>Author name comes here</i>
+										<i>Jack Newmann</i>
 									</span>
 								</p>
 							</div>
 							<div className="col-1">
-								<p>Date</p>
+								<p>2021/1/11</p>
 							</div>
 							<div className="col-2">
 								<p>
-									Views <span style={{ color: "grey" }}>Count</span>
+									Views <span style={{ color: "grey" }}>35</span>
 								</p>
 							</div>
 						</div>
@@ -79,14 +79,7 @@ class ViewBlogPost extends Component {
 								style={{ borderRight: "1px solid green", align: "justify" }}
 							>
 								<p style={{ padding: "1em", fontSize: "1.25em" }}>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud exercitation ullamco
-									laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-									irure dolor in reprehenderit in voluptate velit esse cillum
-									dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum."
+									"I would like to know why I am so depressed in these days"
 								</p>
 							</div>
 							<div className="col-2">
