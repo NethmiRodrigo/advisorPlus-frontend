@@ -40,7 +40,7 @@ If you don't want to register on any category, still you can refer the blogs whi
 Project is created with:
 
 1. Express.js framework
-> It provides remarkable scalability and great support for multiple issues simultaneously. It allowed us to use the same language which is JavaScript both on the back-end and front-end (React.js).As a result, the development process became faster and easier.
+> It provides remarkable scalability and great support for multiple issues simultaneously. It allowed us to use the same language which is JavaScript both on the back-end and front-end (React.js). As a result, the development process became faster and easier.
 
                                
  2. Sequelize ORM (SQL)
