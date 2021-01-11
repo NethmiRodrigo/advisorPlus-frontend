@@ -38,7 +38,17 @@ If you don't want to register on any category, still you can refer the blogs whi
 	
 ## Technologies
 Project is created with:
-* [technology name](www.technology.com/home) - function (why choose it specifically etc.)
+
+1. Express.js framework
+> It provides remarkable scalability and great support for multiple issues simultaneously. It allowed us to use the same language which is JavaScript both on the back-end and front-end (React.js).As a result, the development process became faster and easier.
+
+                               
+ 2. Sequelize ORM (SQL)
+> An ORM created for Node.js.
+
+
+ 3. Firebase
+> Used for user authentication.
 	
 ## Setup
 To run this project, install it locally using npm:
