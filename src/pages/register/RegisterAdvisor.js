@@ -12,8 +12,18 @@ class RegisterAdvisor extends Component {
 	constructor(props) {
 		super(props);
 		this.fields = [
-			{ label: "Full Name", name: "fullName", type: "text", required: true },
-			{ label: "Email", name: "email", type: "email", required: true },
+			{ 
+				label: "Full Name", 
+				name: "fullName", 
+				type: "text", 
+				required: true 
+			},
+			{ 
+				label: "Email", 
+				name: "email", 
+				type: "email", 
+				required: true 
+			},
 			{
 				name: "qualifications",
 				label: "Qualifications",
@@ -26,7 +36,11 @@ class RegisterAdvisor extends Component {
 				type: "text",
 				required: true,
 			},
-			{ label: "Password", name: "password", type: "password", required: true },
+			{ 
+				label: "Password", 
+				name: "password", 
+				type: "password", 
+				required: true },
 			{
 				label: "Confirm Password",
 				name: "confirmPassword",
@@ -61,9 +75,9 @@ class RegisterAdvisor extends Component {
 	}
 
 	handleSubmit = (event) => {
+		event.preventDefault();
 		const form = event.currentTarget;
 		let valid = form.checkValidity();
-		event.preventDefault();
 		let error = {};
 		if (this.state.password !== this.state.confirmPassword) {
 			error.confirmPassword = "Passwords do not match";
@@ -79,6 +93,7 @@ class RegisterAdvisor extends Component {
 				rating: 0,
 				status: "active",
 				name: this.state.fullName,
+				type: "advisor",
 			};
 			this.props.register_user(user_data, this.props.history);
 		}

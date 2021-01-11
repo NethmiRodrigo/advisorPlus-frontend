@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from "react";
-import "../../assets/styles/RegisterStyles.css";
+import { Form } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { register_user } from "../../redux/actions/user_actions";
-import { Form } from "react-bootstrap";
+
+import "../../assets/styles/RegisterStyles.css";
 
 const RegisterUser = (props) => {
+	const [errors, setErrors] = useState({});
 	const useInput = (type, value, name, label, handleChange) => {
 		const input = (
-			<div className="field">
+			<Form.Group className="field">
 				<Form.Label> {label}</Form.Label>
 				<Form.Control
 					value={value}
 					type={type}
 					name={name}
 					required
+					className={errors?.[name] ? "form is-invalid" : "form"}
 					onChange={(e) => {
 						handleChange(e.target.value);
 					}}
 				/>
-			</div>
+				{errors?.[name] && (
+					<Form.Control.Feedback type="invalid">
+						{errors?.[name]}
+					</Form.Control.Feedback>
+				)}
+			</Form.Group>
 		);
 		return input;
 	};
@@ -30,13 +39,14 @@ const RegisterUser = (props) => {
 	const [password, setpassword] = useState("");
 	const [username, setusername] = useState("");
 	const [confirmPassword, setconfirmPassword] = useState("");
-	const [errors, setErrors] = useState({});
 	const [validated, setValidated] = useState(false);
+	const [date, setDate] = useState("");
+	const [gender, setGender] = useState("");
 
 	const fullNameInput = useInput(
 		"text",
 		fullname,
-		"fullName",
+		"fullname",
 		"Full Name",
 		setfullname
 	);
@@ -47,7 +57,7 @@ const RegisterUser = (props) => {
 		"Password",
 		setpassword
 	);
-	const emailInput = useInput("email", email, "email", "Full Name", setemail);
+	const emailInput = useInput("email", email, "email", "Email", setemail);
 	const confirmPasswordInput = useInput(
 		"password",
 		confirmPassword,
@@ -69,21 +79,34 @@ const RegisterUser = (props) => {
 		"Username",
 		setusername
 	);
+	const dobInput = useInput("date", date, "dob", "Date of Birth", setDate);
+
+	useEffect(() => {
+		if (JSON.stringify(props.ui.errors) !== JSON.stringify(errors)) {
+			setErrors(props.ui.errors);
+		}
+	}, [errors]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		const form = event.currentTarget;
 		if (password !== confirmPassword) {
-			setErrors("Passwords do not match");
-		} else {
+			let errors = {};
+			errors.confirmPassword = "Passwords do not match";
+			setErrors(errors);
+		} else if (form.checkValidity()) {
 			const user = {
 				fullname,
 				password,
-				confirmPassword,
-				fieldOfInterest,
 				email,
 				username,
+				gender,
+				dob: date,
+				type: "user",
 			};
+			props.register_user(user, props.history);
 		}
+		setValidated(true);
 	};
 
 	return (
@@ -98,15 +121,35 @@ const RegisterUser = (props) => {
 			</div>
 			<div className="wrapper shadow-lg">
 				<div className="title">Register</div>
-				<Form noValidate validated={validated}>
+				<Form noValidate validated={validated} onSubmit={handleSubmit}>
 					{fullNameInput}
 					{usernameInput}
 					{emailInput}
 					{fieldOfInterestInput}
 					{passwordInput}
 					{confirmPasswordInput}
+					{dobInput}
+					<Form.Group className="field">
+						<Form.Label>Gender</Form.Label>
+						<Form.Control
+							required
+							as="select"
+							custom
+							onChange={(e) => setGender(e.target.value)}
+							style={{ padding: "0.5rem", border: "1px solid #ced4da" }}
+						>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</Form.Control>
+					</Form.Group>
 					<div className="field">
-						<input type="submit" value="Let's Go!" />
+						<input
+							disabled={props.ui.loading}
+							type="submit"
+							className="submit-button"
+							value="Let's Go!"
+							style={{ marginTop: "1rem" }}
+						/>
 					</div>
 					<div className="signup-link">
 						Already a member?
@@ -122,12 +165,15 @@ const RegisterUser = (props) => {
 
 RegisterUser.propTypes = {
 	register_user: PropTypes.func.isRequired,
-	user: PropTypes.object.isRequired,
+	ui: PropTypes.object.isRequired,
 };
 
 const mapActionsToProps = {
 	register_user,
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+	ui: state.ui,
+});
+
 export default connect(mapStateToProps, mapActionsToProps)(RegisterUser);
