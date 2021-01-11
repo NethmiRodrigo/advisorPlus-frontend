@@ -9,18 +9,18 @@ const initialState = {};
 const middleware = [thunk];
 
 const reducers = combineReducers({
-	user: userReducer,
-	ui: UIReducer,
-	data: data_reducer,
+  user: userReducer,
+  ui: UIReducer,
+  data: data_reducer,
 });
 
 const store = createStore(
-	reducers,
-	initialState,
-	compose(
-		applyMiddleware(...middleware),
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-	)
+  reducers,
+  initialState,
+  compose(
+    applyMiddleware(...middleware)
+    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
 export default store;
