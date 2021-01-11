@@ -31,7 +31,7 @@ import Category4 from "./pages/advisors/Category4";
 import Category5 from "./pages/advisors/Category5";
 import Category6 from "./pages/advisors/Category6";
 
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "http://128.199.28.100";
 
 const token = localStorage.AdvsiorPlusToken;
 

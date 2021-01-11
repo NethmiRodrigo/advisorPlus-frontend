@@ -1,7 +1,13 @@
 import React, { Component } from "react";
-import BlogPost from "../../components/blog/BlogPost";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getAllPosts, createPost } from "../../redux/actions/data_actions";
+
+import BlogPost from "../../components/blog/BlogPost";
+import { Alert } from "react-bootstrap";
 
 class Blog extends Component {
 	constructor(props) {
@@ -16,13 +22,24 @@ class Blog extends Component {
 			published: [],
 			postModal: false,
 			searchQuery: "",
+			posts: [],
 		};
+		this.getPosts();
 	}
 
 	titleChangeHandler = (event) => {
 		this.setState({
 			title: event.target.value,
 		});
+	};
+
+	getPosts = () => {
+		this.props.getAllPosts();
+		if (this.props.posts.length > 0 && this.props.posts[0] !== "") {
+			this.setState({
+				posts: this.props.posts,
+			});
+		}
 	};
 
 	contentChangeHandler = (event) => {
@@ -38,19 +55,20 @@ class Blog extends Component {
 	};
 
 	submitPost = (event) => {
-		const newPost = (
-			<BlogPost
-				heading={this.state.title}
-				content={this.state.content}
-				picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-				author="Author"
-				date="Date"
-				tags="Tags"
-			/>
-		);
+		event.preventDefault();
+		const post = {
+			user_id: this.props.user.data.user_id,
+			body: this.state.content,
+			title: this.state.title,
+			service: "",
+			audience: "",
+			content: this.state.content,
+		};
+		this.props.createPost(post, this.props.history);
+		this.props.getAllPosts();
 
 		this.setState({
-			published: this.state.published.concat(newPost),
+			error: this.props.ui.errors,
 			postModal: false,
 		});
 	};
@@ -114,9 +132,15 @@ class Blog extends Component {
 														</div>
 														<div className="col">
 															<div className="row">
-																<p style={{ fontSize: "2em" }}>User Name</p>
+																<p style={{ fontSize: "2em" }}>
+																	{" "}
+																	{this.props.user.data.full_name}{" "}
+																</p>
 															</div>
-															<div className="row">Date</div>
+															<div className="row">
+																{" "}
+																{new Date().toISOString()}
+															</div>
 														</div>
 													</div>
 												</div>
@@ -129,6 +153,7 @@ class Blog extends Component {
 													type="text"
 													className="form-control"
 													id="title"
+													required
 													placeholder="Post title here..."
 													onChange={this.titleChangeHandler}
 												/>
@@ -138,6 +163,7 @@ class Blog extends Component {
 													type="text"
 													className="form-control"
 													id="content"
+													required
 													placeholder="What do you want to talk about?"
 													onChange={this.contentChangeHandler}
 												/>
@@ -206,32 +232,23 @@ class Blog extends Component {
 												</div>
 											</div>
 										</form>
-										<Link to="/blogpost-visitorview">
-											<BlogPost
-												heading="Heading"
-												content="Content"
-												picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-												author="Author"
-												date="Date"
-												tags="Tags"
-											/>
-										</Link>
-										<BlogPost
-											heading="Heading"
-											content="Content"
-											picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-											author="Author"
-											date="Date"
-											tags="Tags"
-										/>
-										<BlogPost
-											heading="Heading"
-											content="Content"
-											picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-											author="Author"
-											date="Date"
-											tags="Tags"
-										/>
+										{this.state.posts.length > 0 &&
+										this.state.posts[0] !== "" ? (
+											this.state.posts.map((post) => (
+												<Link to="/blogpost-visitorview">
+													<BlogPost
+														heading={post.title}
+														content={post.body}
+														picSrc="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+														author="John Doe"
+														date={post.createdAt}
+														tags="Tags"
+													/>
+												</Link>
+											))
+										) : (
+											<Alert variant="warning">No posts found!</Alert>
+										)}
 									</div>
 								</div>
 							</div>
@@ -272,4 +289,22 @@ class Blog extends Component {
 	}
 }
 
-export default Blog;
+Blog.propTypes = {
+	posts: PropTypes.object.isRequired,
+	user: PropTypes.func.isRequired,
+	getAllPosts: PropTypes.func.isRequired,
+	createPost: PropTypes.func.isRequired,
+};
+
+const mapActionsToProps = {
+	getAllPosts,
+	createPost,
+};
+
+const mapStateToProps = (state) => ({
+	posts: state.data.posts,
+	user: state.user,
+	ui: state.ui,
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Blog);

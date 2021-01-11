@@ -7,7 +7,6 @@ import {
 	CLEAR_ERRORS,
 	LOADING_UI,
 	SET_UNAUTHENTICATED,
-	LOADING_USER,
 	STOP_LOADING_UI,
 } from "../types";
 
