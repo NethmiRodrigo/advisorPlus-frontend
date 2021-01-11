@@ -75,9 +75,9 @@ class RegisterAdvisor extends Component {
 	}
 
 	handleSubmit = (event) => {
+		event.preventDefault();
 		const form = event.currentTarget;
 		let valid = form.checkValidity();
-		event.preventDefault();
 		let error = {};
 		if (this.state.password !== this.state.confirmPassword) {
 			error.confirmPassword = "Passwords do not match";
@@ -93,6 +93,7 @@ class RegisterAdvisor extends Component {
 				rating: 0,
 				status: "active",
 				name: this.state.fullName,
+				type: "advisor",
 			};
 			this.props.register_user(user_data, this.props.history);
 		}

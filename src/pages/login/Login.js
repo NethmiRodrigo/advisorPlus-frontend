@@ -47,7 +47,6 @@ class Login extends Component {
 				errors: this.props.ui.errors,
 			});
 		}
-		console.log(this.props.ui);
 	}
 
 	render() {

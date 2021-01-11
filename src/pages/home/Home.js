@@ -1,31 +1,19 @@
 import React from "react";
-// import CategoryNav from './CategoryNav';
 import Slideshow from "../../components/common/slideshow/Slideshow";
-// import RegisterForm from "../register/RegisterForm";
 import IntroSlideShow from "../../components/common/slideshow/IntroSlideShow";
 import BlogAccess from "../blog/BlogAccess";
 
 function Home() {
 	return (
 		<div>
-			{/* <CategoryNav /> */}
 			<BlogAccess />
-			{/* <RegisterForm /> */}
 			<IntroSlideShow />
-			<div
-				style={{
-					marginTop: "70px",
-					marginLeft: "100px",
-					marginBottom: "30px",
-					marginRight: "100px",
-				}}
-			>
-				<p
-					style={{ fontFamily: "Trebuchet MS" }}
-					className="text-center fs-1 fw-bold"
-				>
-					Our popular advisory fields
-				</p>
+			<div className="m-32">
+				<h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl text-center">
+					<span className="block xl:inline mr-2">
+						Our popular advisory fields
+					</span>
+				</h1>
 			</div>
 			<Slideshow />
 		</div>

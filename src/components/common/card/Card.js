@@ -1,21 +1,19 @@
 import React from "react";
-import samplepic from "../../../assets/images/samplepic.jpg";
+// import samplepic from "../../../assets/images/samplepic.jpg";
 
-const Card = () => {
+const Card = ({picSrc, content}) => {
 	return (
 		<div
 			className="card text-white"
 			style={{
 				margin: "1vw",
-				border: "1px solid lightgrey",
 				borderRadius: "5px",
+				height: "60vh"
 			}}
 		>
-			<img src={samplepic} className="card-img" alt="pic" />
+			<img src={picSrc} className="card-img" alt="pic" style={{height: "60vh"}} />
 			<div className="card-img-overlay">
-				<h5 className="card-title">Card title</h5>
-				<p className="card-text">This is a wider card with supporting text.</p>
-				<p className="card-text">Last updated 3 mins ago</p>
+				<p className="card-title display-4" style={{color: "white", textShadow: "1px 1px 10px black"}}>{content}</p>
 			</div>
 		</div>
 	);

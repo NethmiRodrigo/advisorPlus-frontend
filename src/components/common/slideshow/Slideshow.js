@@ -1,6 +1,6 @@
 import React from "react";
-// import samplepic from '../samplepic.jpg';
 import CarsSet from "../card/CardSet";
+import CarsSet2 from "../card/CardSet2";
 
 const Slideshow = () => {
 	return (
@@ -9,25 +9,22 @@ const Slideshow = () => {
 			className="carousel slide"
 			data-bs-ride="carousel"
 			style={{
+				height: "64.3vh",
 				marginTop: "2vh",
 				marginLeft: "5vw",
 				marginRight: "5vw",
-				marginBottom: "15vh",
+				marginBottom: "30vh",
 			}}
 		>
 			<div
 				className="carousel-inner bg-light"
-				style={{ borderRadius: "10px", height: "20rem" }}
+				style={{ borderRadius: "10px", height: "64vh" }}
 			>
 				<div className="carousel-item active">
-					{/* <img src={samplepic} className="d-block" alt="pic" style={{width: '50%'}} /> */}
 					<CarsSet />
 				</div>
 				<div className="carousel-item">
-					<CarsSet />
-				</div>
-				<div className="carousel-item">
-					<CarsSet />
+					<CarsSet2 />
 				</div>
 			</div>
 			<a

@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/user_actions";
 
-import NavbarStyles from "../../assets/styles/NavbarStyles.css";
+import "../../assets/styles/NavbarStyles.css";
 import advisorplus from "../../assets/images/advisorplus.jpg";
+import { ButtonGroup, Button } from "react-bootstrap";
 
 const Navbar = (props) => {
 	const { user } = props;
@@ -45,28 +46,19 @@ const Navbar = (props) => {
 						</li>
 						{user.authenticated ? (
 							<>
-								<li className="p-2 mx-4">
-									<button
-										className="rounded text-white px-4 py-2 bg-green-500 border border-green-500 hover:bg-green-700 hover:border-green-700"
-										onClick={() => props.logoutUser()}
-									>
-										Logout
-									</button>
+								<li className="p-2 mx-1 flex justify-between items-center">
+									<Link to="/advisor-profile">
+										<Button className="rounded-full">
+											<span>
+												<i className="fas fa-user"></i>
+											</span>
+										</Button>
+									</Link>
 								</li>
 								<li className="p-2 mx-1">
-									<Link to="/advisor-profile">
-										<button
-											className="bg-indigo-500"
-											style={{
-												color: "white",
-												borderRadius: "100%",
-												width: "50px",
-												height: "50px",
-											}}
-										>
-											Pic
-										</button>
-									</Link>
+									<Button variant="success" onClick={() => props.logoutUser()}>
+										Logout
+									</Button>
 								</li>
 							</>
 						) : (
